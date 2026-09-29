@@ -35,6 +35,18 @@ const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
     </div>
   </section>
 
+  <section class="palavras-sec">
+    <div class="wrap">
+      <span class="kicker reveal">O que nos move</span>
+      <h2 class="reveal">Sete palavras, <em class="c-laranja">uma</em> identidade</h2>
+    </div>
+    <ul class="palavras">
+      {[['Cultura popular','#c8420a','#fff'],['Tradição','#f19200','#0d1410'],['Arte','#6aa823','#0d1410'],['Identidade','#0a7d8e','#fff'],['Comunidade','#1f4fa8','#fff'],['Festa','#6b3fa0','#fff'],['Memória','#c2246a','#fff']].map(([t, bg, fg], i) => (
+        <li class="reveal" style={`--bg:${bg};--fg:${fg}`}><span class="p-n">0{i + 1}</span><span class="p-t">{t}</span></li>
+      ))}
+    </ul>
+  </section>
+
   <section class="destaque">
     <div class="wrap duas">
       <div class="reveal">

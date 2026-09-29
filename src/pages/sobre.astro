@@ -18,19 +18,25 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
         {sobre.fundacao && <p><strong>Fundação:</strong> {sobre.fundacao}</p>}
         {sobre.missao && <><h3>Missão</h3><p>{sobre.missao}</p></>}
       </div>
-      <aside class="card reveal">
-        <h3>O que é um Ponto de Cultura?</h3>
-        <p>Pontos de Cultura são organizações culturais da sociedade civil reconhecidas pelo poder público no âmbito da Política Nacional de Cultura Viva, que valorizam a diversidade e fortalecem a cultura nos territórios onde atuam.</p>
-      </aside>
+      <p class="texto-lateral reveal">Uma associação cultural que reúne arte, tradição e identidade popular em torno de um Ponto de Cultura.</p>
     </div>
     {sobre.eixos.length > 0 && (
       <div class="grid" style="margin-top:3rem">
         {sobre.eixos.map((e) => <div class="card reveal"><h3>{e.titulo}</h3><p>{e.texto}</p></div>)}
       </div>
     )}
-    <div class="cta-linha reveal">
+  </div></section>
+
+  <section class="bloco-cor bloco-roxo">
+    <div class="wrap reveal">
+      <span class="kicker">Para entender</span>
+      <h2>O que é um <em>Ponto de Cultura</em>?</h2>
+      <p class="citacao-grande">Pontos de Cultura são organizações culturais da sociedade civil reconhecidas pelo poder público no âmbito da Política Nacional de Cultura Viva, que valorizam a diversidade e fortalecem a cultura nos territórios onde atuam.</p>
+    </div>
+  </section>
+
+  <section><div class="wrap">    <div class="cta-linha reveal">
       <p>Conheça o que já realizamos.</p>
       <a class="btn" href={`${b}/projetos`}>Ver projetos →</a>
-    </div>
-  </div></section>
+    </div></div></section>
 </Base>
