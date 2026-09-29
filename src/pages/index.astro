@@ -14,7 +14,7 @@ const itens = [
 const palavras = ['Cultura popular', 'Tradição', 'Arte', 'Identidade', 'Comunidade', 'Festa', 'Memória'];
 ---
 <Base>
-  <div class="hero">
+  <div class="hero" id="inicio">
     <Bandeirinhas />
     <div class="wrap hero-grid">
       <div>
@@ -28,22 +28,25 @@ const palavras = ['Cultura popular', 'Tradição', 'Arte', 'Identidade', 'Comuni
       </div>
       <div class="hero-logo"><img data-tilt src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura, Associação Cultural" /></div>
     </div>
+    <a class="rola" href="#inicio" aria-hidden="true" tabindex="-1"><span></span></a>
   </div>
 
-  <div class="marquee" aria-hidden="true"><div>{[...Array(8)].flatMap(() => palavras).map((t) => <span>{t}<b></b></span>)}</div></div>
+  <div class="marquee" aria-hidden="true" data-marquee="1"><div>{[...Array(8)].flatMap(() => palavras).map((t) => <span>{t}<b></b></span>)}</div></div>
 
   <section>
     <div class="wrap">
       <span class="rotulo reveal">O que fazemos</span>
-      <h2 data-split style="max-width:16ch">Cultura que move a comunidade</h2>
+      <h2 data-split style="max-width:16ch">Cultura que <span class="marca">move</span> a comunidade</h2>
       <p class="sub reveal">Uma associação cultural reconhecida como Ponto de Cultura, dedicada a valorizar a arte, a tradição e a identidade do nosso povo.</p>
       <div class="lista">
-        {itens.map(([n, t, d, h, c]) => (
-          <a class="reveal" href={`${b}${h}`} style={`--cor:${c}`}><span class="n">{n}</span><h3>{t}</h3><span class="seta">→</span><p>{d}</p></a>
+        {itens.map(([n, t, d, h, c], i) => (
+          <a class="reveal" href={`${b}${h}`} style={`--cor:${c};--d:${i * 90}ms`}><span class="n">{n}</span><h3>{t}</h3><span class="seta">→</span><p>{d}</p></a>
         ))}
       </div>
     </div>
   </section>
+
+  <div class="marquee marquee-2" aria-hidden="true" data-marquee="-1"><div>{[...Array(8)].flatMap(() => ['Matutos Elegantes', 'Ponto de Cultura', 'Associação Cultural']).map((t) => <span>{t}<b></b></span>)}</div></div>
 
   <section class="scrub-sec escuro">
     <div class="wrap">
@@ -56,7 +59,7 @@ const palavras = ['Cultura popular', 'Tradição', 'Arte', 'Identidade', 'Comuni
     <div class="wrap">
       <div class="reveal">
         <span class="rotulo">Em destaque</span>
-        <h2>{atual.titulo}</h2>
+        <h2 data-split>{atual.titulo}</h2>
         <p>{atual.resumo}</p>
         <a class="btn escuro" data-magnetic href={`${b}/projetos#${atual.id}`}>Conhecer o projeto →</a>
       </div>
@@ -67,7 +70,7 @@ const palavras = ['Cultura popular', 'Tradição', 'Arte', 'Identidade', 'Comuni
   <section class="insta">
     <div class="wrap reveal">
       <div>
-        <h2>Acompanhe no Instagram</h2>
+        <h2 data-split>Acompanhe no Instagram</h2>
         <p>Novidades, eventos e bastidores dos nossos projetos.</p>
       </div>
       <a class="btn" data-magnetic href={site.instagram} rel="noopener">Seguir {site.instagramUsuario} →</a>

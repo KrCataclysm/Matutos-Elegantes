@@ -105,6 +105,9 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
       // scrub de palavras + parallax + progresso
       var pars = document.querySelectorAll('[data-parallax]');
       function frame() {
+        var dy = scrollY - lastY; vel = vel * 0.6 + dy * 0.4; lastY = scrollY;
+        if (!nav.classList.contains('aberto')) topo.classList.toggle('oculto', dy > 2 && scrollY > 220);
+        if (dy < -2) topo.classList.remove('oculto');
         var h = root.scrollHeight - innerHeight;
         prog.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
         scrubs.forEach(function (el) {
@@ -118,6 +121,22 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
           el.style.transform = 'translate3d(0,' + (-c * s).toFixed(1) + 'px,0)';
         });
       }
+      // cabeçalho: some ao descer, volta ao subir
+      var topo = document.querySelector('header.topo'), lastY = scrollY, vel = 0;
+      // faixas rolantes reagem à velocidade e ao sentido da rolagem
+      var marqs = Array.prototype.slice.call(document.querySelectorAll('[data-marquee]')).map(function (m) { return { el: m.firstElementChild, dir: +m.getAttribute('data-marquee') || 1, x: 0 }; });
+      function loop() {
+        marqs.forEach(function (m) {
+          var half = m.el.scrollWidth / 2; if (!half) return;
+          m.x -= m.dir * (0.6 + Math.min(Math.abs(vel), 40) * 0.35) * (vel < 0 ? -1 : 1) * 1;
+          if (m.x <= -half) m.x += half; if (m.x >= 0) m.x -= half;
+          m.el.style.transform = 'translate3d(' + m.x.toFixed(1) + 'px,0,0)';
+        });
+        vel *= 0.92;
+        requestAnimationFrame(loop);
+      }
+      marqs.forEach(function (m) { m.x = -m.el.scrollWidth / 4; });
+      requestAnimationFrame(loop);
       var tick = false;
       addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(function () { frame(); tick = false; }); } }, { passive: true });
       addEventListener('resize', frame); frame();
