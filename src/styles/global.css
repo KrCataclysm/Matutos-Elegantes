@@ -103,3 +103,79 @@ footer small{display:block;opacity:.55;margin-top:1rem}
 .cta-linha p{margin:0;font-family:var(--f-titulo);font-size:1.3rem}
 .cta-banda{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem 2rem;padding:clamp(1.6rem,4vw,2.6rem);border-radius:20px;background:var(--papel);border:1px solid var(--linha);box-shadow:var(--sombra)}
 .cta-banda h2{margin-bottom:.3rem}.cta-banda .sub{margin:0}
+
+/* ===== COR E VIDA ===== */
+.hero{position:relative;background:
+  radial-gradient(circle at 12% 30%,rgba(240,87,15,.55),transparent 38%),
+  radial-gradient(circle at 88% 25%,rgba(18,164,184,.5),transparent 38%),
+  radial-gradient(circle at 70% 95%,rgba(232,53,138,.5),transparent 42%),
+  radial-gradient(circle at 25% 100%,rgba(241,146,0,.4),transparent 40%),
+  var(--verde-esc);overflow:hidden;padding-top:0}
+.hero .bandeirinhas{margin-bottom:clamp(1.2rem,3vw,2.2rem)}
+.hero .forma{position:absolute;border-radius:50%;pointer-events:none;opacity:.9}
+.hero .f1{width:220px;height:220px;background:var(--palha);left:-90px;bottom:-80px}
+.hero .f2{width:150px;height:150px;border:22px solid var(--pink);right:-50px;top:30%;opacity:.85}
+.hero .f3{width:90px;height:90px;background:var(--ciano);right:12%;bottom:-30px}
+.hero .wrap{position:relative;z-index:1}
+.hero .selo{display:inline-block;margin-bottom:1.1rem;padding:.35rem 1rem;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;backdrop-filter:blur(4px)}
+.hero h1{color:#fff;font-size:clamp(1.9rem,5vw,3.2rem);max-width:20ch;margin:0 auto 1rem}
+.hero h1 em{font-style:normal;color:var(--palha)}
+.hero img.logo{width:min(440px,80%);margin-bottom:1.4rem}
+.btn.sec{box-shadow:inset 0 0 0 2px #fff;color:#fff}
+/* faixa rolante */
+.marquee{background:var(--laranja);color:#fff;overflow:hidden;white-space:nowrap;transform:rotate(-1deg);margin:-1.2rem -2% 0;position:relative;z-index:2;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+.marquee div{display:inline-block;padding:.85rem 0;font-family:var(--f-titulo);font-size:1.25rem;font-weight:700;animation:corre 34s linear infinite}
+.marquee b{color:var(--palha);margin:0 1.4rem}
+@keyframes corre{to{transform:translateX(-50%)}}
+/* titulos com cor */
+h2 em,h1 em{font-style:normal}
+.c-laranja{color:var(--laranja)}.c-ciano{color:var(--ciano)}.c-roxo{color:var(--roxo)}.c-pink{color:var(--pink)}.c-lima{color:var(--lima)}.c-azul{color:var(--azul)}
+.kicker{color:var(--laranja)}
+/* cards coloridos */
+.card{border:0;box-shadow:0 18px 40px -18px rgba(0,0,0,.35)}
+.card::before{display:none}
+.grid .card{color:#fff;padding-top:2.2rem}
+.grid .card h3,.grid .card p,.grid .card a.mais{color:#fff}
+.grid .card p{opacity:.92}
+.grid .card:nth-child(1){background:linear-gradient(150deg,var(--laranja),#ff8a1f)}
+.grid .card:nth-child(2){background:linear-gradient(150deg,var(--ciano),var(--azul))}
+.grid .card:nth-child(3){background:linear-gradient(150deg,var(--roxo),var(--pink))}
+.grid .card:nth-child(4){background:linear-gradient(150deg,var(--lima),var(--verde-2,#0f6a2b))}
+.card .ico{width:54px;height:54px;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;margin-bottom:1rem}
+.card .ico svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.grid .card::after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.14)}
+.duas-col .card,.contatos .card,.card.branco{background:var(--papel);color:var(--tinta)}
+.duas-col .card h3,.contatos .card strong{color:var(--verde-esc)}
+.duas-col .card p{color:var(--suave)}
+/* secoes alternadas */
+section.papel{background:#fff;background-image:radial-gradient(rgba(11,74,30,.07) 1.4px,transparent 1.4px);background-size:24px 24px}
+.destaque{background:var(--palha);color:var(--verde-esc);position:relative;overflow:hidden}
+.destaque h2{color:var(--verde-esc)}.destaque .kicker,.destaque .sub{color:var(--verde-esc)}
+.destaque::before{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.28)}
+.destaque .painel{background:var(--verde-esc);color:#fff;border-top:0;transform:rotate(1.5deg)}
+.destaque .painel h3{color:#fff}.destaque .painel p{color:rgba(255,255,255,.8)}
+.destaque .painel .tag{background:var(--palha);color:var(--verde-esc)}
+.destaque .btn{background:var(--verde-esc);box-shadow:0 8px 18px -8px rgba(0,0,0,.6)}
+.destaque .btn:hover{background:#000}
+@media (max-width:820px){.destaque .painel{transform:none}}
+.cta-banda{background:linear-gradient(120deg,var(--roxo),var(--pink));border:0;color:#fff}
+.cta-banda h2,.cta-banda .sub,.cta-banda .kicker{color:#fff}
+.cta-banda .btn{background:#fff;color:var(--roxo);box-shadow:0 8px 18px -8px rgba(0,0,0,.5)}
+.cta-linha{background:linear-gradient(120deg,var(--verde-esc),var(--verde-2,#0f6a2b))}
+/* topos das paginas */
+.pagina-topo{position:relative;overflow:hidden;background:var(--cor-pg,var(--verde-esc))}
+.pagina-topo::after{content:"";position:absolute;right:-70px;top:-70px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.14)}
+.pagina-topo::before{content:"";position:absolute;right:120px;bottom:-60px;width:120px;height:120px;border-radius:50%;border:16px solid rgba(255,255,255,.14)}
+.pagina-topo .wrap{position:relative;z-index:1}
+.pagina-topo .bandeirinhas{margin-bottom:1.6rem}
+.pg-sobre{--cor-pg:#d94a0a}.pg-projetos{--cor-pg:#1f4fa8}.pg-transp{--cor-pg:#6b3fa0}.pg-contato{--cor-pg:#0e8a9b}
+/* projetos */
+.projeto{border:0}
+.projeto:nth-of-type(7n+1)::before{background:var(--laranja)}
+.tag{background:var(--verde);color:#fff}
+.projeto:nth-of-type(1) .tag{background:var(--laranja)}.projeto:nth-of-type(2) .tag{background:var(--ciano)}.projeto:nth-of-type(3) .tag{background:var(--roxo)}.projeto:nth-of-type(4) .tag{background:var(--pink)}
+/* rodape com bandeirinhas */
+footer{border-image:none;border-top:0;padding-top:0}
+footer .bandeirinhas{color:rgba(255,255,255,.35)}
+.marquee-wrap{overflow:hidden;padding:1.2rem 0 1rem;margin-top:-1.2rem;position:relative;z-index:2}
+.marquee{margin:0 -3%}

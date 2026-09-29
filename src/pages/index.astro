@@ -2,14 +2,18 @@
 import Base from '../layouts/Base.astro';
 import projetos from '../data/projetos.json';
 import site from '../data/site.json';
+import Bandeirinhas from '../components/Bandeirinhas.astro';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
 ---
 <Base>
   <div class="hero">
+    <Bandeirinhas />
+    <span class="forma f1"></span><span class="forma f2"></span><span class="forma f3"></span>
     <div class="wrap">
       <img class="logo" src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura, Associação Cultural" />
-      <p>Cultura popular com orgulho, cor e chapéu de palha. Conheça a nossa história e os projetos que realizamos.</p>
+      <h1>Cultura popular com <em>orgulho, cor</em> e chapéu de palha</h1>
+      <p>Conheça a nossa história e os projetos que realizamos.</p>
       <div class="acoes">
         <a class="btn" href={`${b}/projetos`}>Ver projetos →</a>
         <a class="btn sec" href={`${b}/sobre`}>Quem somos</a>
@@ -17,15 +21,17 @@ const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
     </div>
   </div>
 
-  <section>
+  <div class="marquee-wrap"><div class="marquee" aria-hidden="true"><div>{[...Array(8)].flatMap(() => ['Cultura popular','Tradição','Arte','Identidade','Comunidade','Festa','Memória']).map((t) => <span>{t}<b>✦</b></span>)}</div></div></div>
+
+  <section class="papel">
     <div class="wrap">
       <span class="kicker reveal">O que fazemos</span>
-      <h2 class="reveal">Cultura que move a comunidade</h2>
+      <h2 class="reveal">Cultura que <em class="c-laranja">move</em> a comunidade</h2>
       <p class="sub reveal">Uma associação cultural reconhecida como Ponto de Cultura, dedicada a valorizar a arte, a tradição e a identidade do nosso povo.</p>
       <div class="grid" style="margin-top:2.5rem">
-        <div class="card reveal"><h3>Sobre nós</h3><p>Quem somos, nossa missão e o que fazemos pela cultura.</p><a class="mais" href={`${b}/sobre`}>Saiba mais →</a></div>
-        <div class="card reveal"><h3>Projetos</h3><p>Ações realizadas, organizadas por edital e por ano.</p><a class="mais" href={`${b}/projetos`}>Ver projetos →</a></div>
-        <div class="card reveal"><h3>Transparência</h3><p>Prestação de contas clara e aberta a toda a comunidade.</p><a class="mais" href={`${b}/transparencia`}>Acessar →</a></div>
+        <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15.5 14.3c3 .2 5.5 2.2 5.5 5.7"/></svg></div><h3>Sobre nós</h3><p>Quem somos, nossa missão e o que fazemos pela cultura.</p><a class="mais" href={`${b}/sobre`}>Saiba mais →</a></div>
+        <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 9"/></svg></div><h3>Projetos</h3><p>Ações realizadas, organizadas por edital e por ano.</p><a class="mais" href={`${b}/projetos`}>Ver projetos →</a></div>
+        <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div><h3>Transparência</h3><p>Prestação de contas clara e aberta a toda a comunidade.</p><a class="mais" href={`${b}/transparencia`}>Acessar →</a></div>
       </div>
     </div>
   </section>
@@ -33,7 +39,7 @@ const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
   <section class="destaque">
     <div class="wrap duas">
       <div class="reveal">
-        <span class="kicker" style="color:var(--palha)">Em destaque</span>
+        <span class="kicker">Em destaque</span>
         <h2>{atual.titulo}</h2>
         <p class="sub">{atual.resumo}</p>
         <a class="btn" href={`${b}/projetos#${atual.id}`}>Conhecer o projeto →</a>
@@ -49,7 +55,7 @@ const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
     <div class="wrap cta-banda reveal">
       <div>
         <span class="kicker">Acompanhe</span>
-        <h2>Fique por dentro do que acontece</h2>
+        <h2>Fique por dentro do que <em>acontece</em></h2>
         <p class="sub">Novidades, eventos e bastidores dos nossos projetos no Instagram.</p>
       </div>
       <a class="btn" href={site.instagram} rel="noopener">Seguir {site.instagramUsuario} →</a>

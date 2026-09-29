@@ -1,11 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import Bandeirinhas from '../components/Bandeirinhas.astro';
 import projetos from '../data/projetos.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const lista = [...projetos].sort((a, c) => c.ano - a.ano);
 ---
 <Base titulo="Projetos">
-  <div class="pagina-topo"><div class="wrap"><h1>Projetos</h1><p>Do mais recente ao mais antigo, organizados por edital e ano.</p></div></div>
+  <div class="pagina-topo pg-projetos"><Bandeirinhas /><div class="wrap"><h1>Projetos</h1><p>Do mais recente ao mais antigo, organizados por edital e ano.</p></div></div>
   <div class="faixa"></div>
   <section><div class="wrap">
     {lista.map((p) => (
