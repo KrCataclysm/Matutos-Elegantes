@@ -5,10 +5,10 @@ import site from '../data/site.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
 const itens = [
-  ['01', 'Sobre nós', 'Quem somos, nossa missão e o que fazemos pela cultura.', '/sobre', 'var(--laranja)'],
+  ['01', 'Sobre nós', 'Quem somos, nossa missão e o que fazemos pela cultura.', '/sobre', 'var(--laranja-t)'],
   ['02', 'Projetos', 'Ações realizadas, organizadas por edital e por ano.', '/projetos', 'var(--azul)'],
   ['03', 'Transparência', 'Prestação de contas clara e aberta a toda a comunidade.', '/transparencia', 'var(--roxo)'],
-  ['04', 'Contato', 'Parcerias, projetos e apoio à cultura popular.', '/contato', 'var(--ciano)'],
+  ['04', 'Contato', 'Parcerias, projetos e apoio à cultura popular.', '/contato', 'var(--ciano-t)'],
 ];
 ---
 <Base>
@@ -30,7 +30,7 @@ const itens = [
 
   <section>
     <div class="wrap">
-      <span class="rotulo reveal" style="color:var(--laranja)">O que fazemos</span>
+      <span class="rotulo reveal" style="color:var(--laranja-t)">O que fazemos</span>
       <h2 class="reveal" style="max-width:16ch">Cultura que move a comunidade</h2>
       <p class="texto-grande reveal" style="max-width:40rem;color:var(--suave)">Uma associação cultural reconhecida como Ponto de Cultura, dedicada a valorizar a arte, a tradição e a identidade do nosso povo.</p>
       <div class="lista">
@@ -50,6 +50,20 @@ const itens = [
         <a class="btn" href={`${b}/projetos#${atual.id}`}>Conhecer o projeto</a>
       </div>
       <div class="ano reveal" aria-hidden="true">{atual.ano}<small>{atual.edital}</small></div>
+    </div>
+  </section>
+
+  <section class="parceria">
+    <div class="wrap reveal">
+      <div>
+        <span class="rotulo" style="color:var(--palha)">Parcerias e apoio</span>
+        <h2>Vamos fazer cultura juntos</h2>
+        <p>Instituições, produtores, artistas e apoiadores: fale com a gente para construir novas ações.</p>
+      </div>
+      <div class="acoes">
+        <a class="btn" href={`${b}/contato`}>Entrar em contato</a>
+        <a class="btn vazado" href={`${b}/transparencia`}>Transparência</a>
+      </div>
     </div>
   </section>
 

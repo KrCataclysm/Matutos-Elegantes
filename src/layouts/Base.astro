@@ -25,6 +25,12 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
   <link rel="sitemap" href={`${b}/sitemap-index.xml`} />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={tituloFull} />
+  <meta name="twitter:description" content={descricao} />
+  <meta name="twitter:image" content={new URL(`${b}/og.png`, Astro.site).href} />
+  <meta property="og:image:alt" content="Matutos Elegantes — Ponto de Cultura" />
+  <meta name="color-scheme" content="light" />
+  <script is:inline>document.documentElement.classList.add('js')</script>
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content={site.nome} />
   <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />
@@ -35,7 +41,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
 </head>
 <body>
   <a class="pula" href="#conteudo">Pular para o conteúdo</a>
-  <header class="topo">
+  <header class="topo" id="topo">
     <div class="wrap">
       <a href={`${b}/`} aria-label="Matutos Elegantes — início"><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura" /></a>
       <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
@@ -50,13 +56,17 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
     <div class="wrap">
       <div><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes" /></div>
       <div><h4>Navegação</h4>{links.map(([h, t]) => <a href={`${b}${h === '/' ? '/' : h}`}>{t}</a>)}</div>
-      <div><h4>Contato</h4><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a></div>
+      <div><h4>Contato</h4><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.instagram} rel="noopener noreferrer" target="_blank">Instagram {site.instagramUsuario}</a></div>
     </div>
-    <div class="legal">© {new Date().getFullYear()} Associação Cultural Matutos Elegantes · Ponto de Cultura</div>
+    <div class="legal">© {new Date().getFullYear()} Associação Cultural Matutos Elegantes · Ponto de Cultura · <a href="#topo" style="display:inline;min-height:0">Voltar ao topo ↑</a></div>
   </footer>
   <script is:inline>
     const btn = document.querySelector('.menu-btn'), nav = document.getElementById('nav');
-    btn.addEventListener('click', () => btn.setAttribute('aria-expanded', nav.classList.toggle('aberto')));
+    const fecha = () => { nav.classList.remove('aberto'); btn.setAttribute('aria-expanded', 'false'); };
+    btn.addEventListener('click', () => btn.setAttribute('aria-expanded', String(nav.classList.toggle('aberto'))));
+    nav.addEventListener('click', (e) => e.target.closest('a') && fecha());
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('aberto')) { fecha(); btn.focus(); } });
+    matchMedia('(min-width:861px)').addEventListener('change', fecha);
     const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add('vis'), io.unobserve(e.target))), { threshold: .12 });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
   </script>
