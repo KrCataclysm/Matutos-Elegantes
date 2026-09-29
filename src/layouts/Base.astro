@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import site from '../data/site.json';
-import Bandeirinhas from '../components/Bandeirinhas.astro';
 const { titulo, descricao = 'Matutos Elegantes — Ponto de Cultura e Associação Cultural. Cultura popular, arte e identidade.' } = Astro.props;
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = Astro.url.pathname.replace(/\/$/, '');
@@ -23,7 +22,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <link rel="icon" href={`${b}/logo/logo-escuro.png`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Chango&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <a class="pula" href="#conteudo">Pular para o conteúdo</a>
@@ -39,11 +38,10 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   </header>
   <main id="conteudo"><slot /></main>
   <footer>
-    <Bandeirinhas />
     <div class="wrap">
       <img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes" />
       <p>Ponto de Cultura · Associação Cultural</p>
-      <p><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a> · <a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a><a href={`mailto:${site.email}`}>{site.email}</a></p>
       <small>© {new Date().getFullYear()} Associação Cultural Matutos Elegantes</small>
     </div>
   </footer>
