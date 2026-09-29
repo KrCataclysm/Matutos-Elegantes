@@ -1,4 +1,4 @@
-/** Metadados de obra — contrato único usado por páginas, grids e (futuro) CMS/JSON. */
+/** Metadados de obra, contrato único usado por páginas, grids e (futuro) CMS/JSON. */
 
 export type SpectrumKey = 'ember' | 'amber' | 'moss' | 'lagoon' | 'cobalt' | 'violet' | 'rose' | 'forest';
 

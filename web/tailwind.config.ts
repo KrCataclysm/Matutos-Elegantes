@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 /**
- * Sistema de design — "Galeria Matutos".
+ * Sistema de design, "Galeria Matutos".
  * Princípios: papel marfim, tinta quase preta, fio de 1px, ouro como único acento neutro;
  * a cor vive nas obras (spectrum), nunca na interface.
  */

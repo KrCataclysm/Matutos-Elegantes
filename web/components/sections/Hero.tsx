@@ -43,7 +43,7 @@ export function Hero(): ReactElement {
       className="relative isolate overflow-hidden bg-ivory px-gutter pb-16 pt-32 sm:pt-40 lg:min-h-[100svh] lg:pb-20"
     >
       <div className="mx-auto grid max-w-frame grid-cols-12 gap-x-6">
-        {/* Legenda superior — fios de 1px */}
+        {/* Legenda superior, fios de 1px */}
         <Reveal className="col-span-12 mb-10 flex items-center justify-between border-b border-line pb-4 lg:mb-14">
           <p className="micro text-ink-500">Ponto de Cultura · Associação Cultural</p>
           <p className="micro hidden text-ink-500 sm:block">Coleção MMXXVI</p>
@@ -118,7 +118,7 @@ export function Hero(): ReactElement {
         <div className="col-span-12 row-start-4 mt-10 lg:col-span-4 lg:col-start-1 lg:row-start-4 lg:mt-0 lg:self-end">
           <Reveal delay={1.1}>
             <p className="max-w-md text-lead text-ink-700">
-              Arte, tradição e identidade popular reunidas em um acervo vivo — uma plataforma cultural onde cada obra é um território.
+              Arte, tradição e identidade popular reunidas em um acervo vivo, uma plataforma cultural onde cada obra é um território.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
               <Button href="/acervo/">Explorar o acervo</Button>

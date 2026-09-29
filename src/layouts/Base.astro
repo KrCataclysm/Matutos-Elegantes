@@ -2,17 +2,17 @@
 import '../styles/global.css';
 import site from '../data/site.json';
 import Bandeirinhas from '../components/Bandeirinhas.astro';
-const { titulo, descricao = 'Matutos Elegantes — Ponto de Cultura e Associação Cultural. Cultura popular, arte e identidade.' } = Astro.props;
+const { titulo, descricao = 'Matutos Elegantes · Ponto de Cultura e Associação Cultural. Cultura popular, arte e identidade.' } = Astro.props;
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = Astro.url.pathname.replace(/\/$/, '');
 const links = [['/', 'Início'], ['/sobre', 'Sobre'], ['/projetos', 'Projetos'], ['/transparencia', 'Transparência'], ['/contato', 'Contato']];
-const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Ponto de Cultura`;
+const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} · Ponto de Cultura`;
 ---
 <!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>{tituloFull}</title>
   <meta name="description" content={descricao} />
   <meta name="theme-color" content="#072f15" />
@@ -29,7 +29,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content={site.nome} />
   <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />
-  <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'NGO', name: 'Associação Cultural Matutos Elegantes', alternateName: 'Matutos Elegantes — Ponto de Cultura', url: new URL(`${b}/`, Astro.site).href, logo: new URL(`${b}/icon-512.png`, Astro.site).href, email: site.email, sameAs: [site.instagram] })} />
+  <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'NGO', name: 'Associação Cultural Matutos Elegantes', alternateName: 'Matutos Elegantes · Ponto de Cultura', url: new URL(`${b}/`, Astro.site).href, logo: new URL(`${b}/icon-512.png`, Astro.site).href, email: site.email, sameAs: [site.instagram] })} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..900,0..100,0..1;1,9..144,400..900,0..100,0..1&display=swap" rel="stylesheet" />
@@ -40,7 +40,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <a class="pula" href="#conteudo">Pular para o conteúdo</a>
   <header class="topo">
     <div class="wrap">
-      <a href={`${b}/`} aria-label="Matutos Elegantes — início"><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura" /></a>
+      <a href={`${b}/`} aria-label="Matutos Elegantes, página inicial"><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes, Ponto de Cultura" /></a>
       <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
       <nav id="nav" aria-label="Principal">
         {links.map(([h, t]) => <a href={`${b}${h === '/' ? '/' : h}`} aria-current={path === `${b}${h === '/' ? '' : h}` ? 'page' : undefined}>{t}</a>)}
