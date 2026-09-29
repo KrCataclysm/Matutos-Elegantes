@@ -93,3 +93,27 @@ footer small{display:block;opacity:.6;margin-top:1rem}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
 .reveal.vis{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+/* refinamentos de responsividade e acessibilidade */
+html{-webkit-text-size-adjust:100%}
+h1,h2,h3,.sub{text-wrap:balance}
+p{text-wrap:pretty}
+body{padding-inline:env(safe-area-inset-left) env(safe-area-inset-right)}
+nav a,.menu-btn,.card a.mais,footer a{min-height:44px;display:inline-flex;align-items:center}
+.card a.mais{padding-block:.35rem}
+footer p{display:flex;flex-wrap:wrap;justify-content:center;gap:.2rem 1rem;margin-bottom:.4rem}
+.pula{position:absolute;left:-999px;top:0;background:var(--palha);color:var(--marrom);padding:.7rem 1.2rem;z-index:50;font-weight:800;border-radius:0 0 12px 0}
+.pula:focus{left:0}
+section{padding:clamp(3rem,8vw,5rem) 0}
+.hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(2rem,5vw,3.5rem)}
+.card,.projeto{padding:clamp(1.3rem,3vw,2rem)}
+.projeto>*{margin-left:.9rem}
+.btn{min-height:48px;justify-content:center}
+@media (max-width:480px){
+  .hero .acoes{flex-direction:column;align-items:stretch;max-width:320px;margin-inline:auto}
+  .wrap{width:min(1120px,100% - 2rem)}
+  .card,.projeto{box-shadow:4px 4px 0 var(--marrom)}
+  .marquee div{font-size:1rem}
+  header.topo img{height:48px}
+}
+@media (min-width:1500px){body{font-size:1.2rem}.wrap{width:min(1240px,100% - 4rem)}}
+@media print{header.topo,.marquee,.bandeirinhas,.gota{display:none}body{background:#fff}}
