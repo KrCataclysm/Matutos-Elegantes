@@ -13,7 +13,7 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="duas-col">
       <div class="reveal">
         <span class="rotulo">Quem somos</span>
-        <h2>Associação Cultural Matutos Elegantes</h2>
+        <h2 data-split>Associação Cultural Matutos Elegantes</h2>
         <p class="texto-grande">{sobre.apresentacao || 'Associação cultural reconhecida como Ponto de Cultura, dedicada à valorização da arte, da tradição e da identidade popular.'}</p>
         {sobre.fundacao && <p><strong>Fundação:</strong> {sobre.fundacao}</p>}
         {sobre.missao && <><h3>Missão</h3><p>{sobre.missao}</p></>}
@@ -28,8 +28,8 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
   <section class="bloco-cor">
     <div class="wrap reveal">
       <span class="rotulo">Para entender</span>
-      <h2>O que é um <em>Ponto de Cultura</em>?</h2>
-      <p class="citacao-grande">Pontos de Cultura são organizações culturais da sociedade civil reconhecidas pelo poder público no âmbito da Política Nacional de Cultura Viva, que valorizam a diversidade e fortalecem a cultura nos territórios onde atuam.</p>
+      <h2 data-split>O que é um <em>Ponto de Cultura</em>?</h2>
+      <p class="citacao-grande" data-scrub>Pontos de Cultura são organizações culturais da sociedade civil reconhecidas pelo poder público no âmbito da Política Nacional de Cultura Viva, que valorizam a diversidade e fortalecem a cultura nos territórios onde atuam.</p>
     </div>
   </section>
 
