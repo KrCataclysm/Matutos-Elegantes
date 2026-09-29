@@ -1,12 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import Bandeirinhas from '../components/Bandeirinhas.astro';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base titulo="Página não encontrada">
-  <section><div class="wrap" style="text-align:center">
-    <span class="kicker">Erro 404</span>
-    <h1>Essa página não existe</h1>
-    <p class="sub" style="margin:1rem auto 2rem">O endereço pode ter mudado. Volte ao início e continue explorando.</p>
-    <a class="btn" href={`${b}/`}>Voltar ao início</a>
-  </div></section>
+  <div class="pagina-topo pg-erro">
+    <Bandeirinhas />
+    <div class="wrap"><div class="trilha"><a href={`${b}/`}>Início</a> / Erro 404</div><h1 data-split>Página não encontrada</h1><p>O endereço pode ter mudado. Volte ao início e continue explorando.</p></div>
+  </div>
+  <section><div class="wrap"><a class="btn" href={`${b}/`}>Voltar ao início</a></div></section>
 </Base>
