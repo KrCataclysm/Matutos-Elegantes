@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base>
+  <div class="hero">
+    <div class="wrap">
+      <img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura, Associação Cultural" />
+      <p>Cultura popular com orgulho, cor e chapéu de palha. Conheça a nossa história e os projetos que realizamos.</p>
+      <a class="btn" href={`${b}/projetos`}>Ver projetos</a>
+    </div>
+  </div>
+  <div class="faixa"></div>
+  <section>
+    <div class="wrap grid">
+      <div class="card"><h3>Sobre nós</h3><p>Quem somos e o que fazemos pela cultura.</p><a href={`${b}/sobre`}>Saiba mais →</a></div>
+      <div class="card"><h3>Projetos</h3><p>Ações organizadas por edital e ano.</p><a href={`${b}/projetos`}>Ver projetos →</a></div>
+      <div class="card"><h3>Transparência</h3><p>Prestação de contas institucional.</p><a href={`${b}/transparencia`}>Acessar →</a></div>
+    </div>
+  </section>
+</Base>

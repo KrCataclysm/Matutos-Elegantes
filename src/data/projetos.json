@@ -1,0 +1,26 @@
+[
+  {
+    "id": "pnab-2025",
+    "titulo": "PNAB 2025",
+    "ano": 2025,
+    "edital": "Política Nacional Aldir Blanc",
+    "resumo": "Texto-resumo das atividades realizadas no edital PNAB 2025. Substituir pelo texto final fornecido pelo cliente.",
+    "fotos": []
+  },
+  {
+    "id": "2024",
+    "titulo": "2024",
+    "ano": 2024,
+    "edital": "Edital a confirmar",
+    "resumo": "Resumo das atividades de 2024 (aguardando material do cliente).",
+    "fotos": []
+  },
+  {
+    "id": "2023",
+    "titulo": "2023",
+    "ano": 2023,
+    "edital": "Edital a confirmar",
+    "resumo": "Resumo das atividades de 2023 (aguardando material do cliente).",
+    "fotos": []
+  }
+]
