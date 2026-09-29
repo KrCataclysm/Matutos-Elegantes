@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://krcataclysm.github.io/Matutos-Elegantes/sitemap-index.xml

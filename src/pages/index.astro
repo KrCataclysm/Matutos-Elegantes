@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import projetos from '../data/projetos.json';
+import site from '../data/site.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
 ---
@@ -42,6 +43,16 @@ const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
         <p>Fotos, atividades e resultados publicados em breve.</p>
         <span class="tag">{atual.ano}</span>
       </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap cta-banda reveal">
+      <div>
+        <span class="kicker">Acompanhe</span>
+        <h2>Fique por dentro do que acontece</h2>
+        <p class="sub">Novidades, eventos e bastidores dos nossos projetos no Instagram.</p>
+      </div>
+      <a class="btn" href={site.instagram} rel="noopener">Seguir {site.instagramUsuario} →</a>
     </div>
   </section>
 </Base>

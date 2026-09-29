@@ -4,7 +4,7 @@
     "titulo": "PNAB 2026",
     "ano": 2026,
     "edital": "Política Nacional Aldir Blanc",
-    "resumo": "O edital PNAB 2025 segue válido em 2026: as ações contempladas continuam em execução ao longo do ano. Substituir pelo texto final fornecido pelo cliente.",
+    "resumo": "Ações desenvolvidas no âmbito do edital PNAB, cuja vigência se estende por 2026. O registro completo das atividades será publicado nesta página.",
     "fotos": []
   },
   {
@@ -12,23 +12,23 @@
     "titulo": "PNAB 2025",
     "ano": 2025,
     "edital": "Política Nacional Aldir Blanc",
-    "resumo": "Texto-resumo das atividades realizadas no edital PNAB 2025. Substituir pelo texto final fornecido pelo cliente.",
+    "resumo": "Registro das atividades realizadas no edital PNAB 2025.",
     "fotos": []
   },
   {
     "id": "2024",
     "titulo": "2024",
     "ano": 2024,
-    "edital": "Edital a confirmar",
-    "resumo": "Resumo das atividades de 2024 (aguardando material do cliente).",
+    "edital": "Atividades do ano",
+    "resumo": "Registro das atividades realizadas em 2024.",
     "fotos": []
   },
   {
     "id": "2023",
     "titulo": "2023",
     "ano": 2023,
-    "edital": "Edital a confirmar",
-    "resumo": "Resumo das atividades de 2023 (aguardando material do cliente).",
+    "edital": "Atividades do ano",
+    "resumo": "Registro das atividades realizadas em 2023.",
     "fotos": []
   }
 ]

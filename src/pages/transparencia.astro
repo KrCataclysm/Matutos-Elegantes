@@ -1,10 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
 ---
-<Base titulo="Transparência">
+<Base titulo="Transparência" descricao="Prestação de contas e documentos institucionais da Associação Cultural Matutos Elegantes.">
   <div class="pagina-topo"><div class="wrap"><h1>Transparência</h1><p>Prestação de contas dos recursos recebidos por editais públicos.</p></div></div>
   <div class="faixa"></div>
   <section><div class="wrap">
-    <div class="card"><h3>Documentos</h3><p>[Relatórios, planos de trabalho e prestações de contas — conteúdo a confirmar com o cliente.]</p></div>
+    <div class="card reveal" style="max-width:720px">
+      <h3>Documentos institucionais</h3>
+      <p>Relatórios, planos de trabalho e prestações de contas serão disponibilizados nesta página, organizados por edital e ano.</p>
+      <p>Precisa de alguma informação agora? Escreva para <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
   </div></section>
 </Base>
