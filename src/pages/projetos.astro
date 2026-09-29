@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import projetos from '../data/projetos.json';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+const lista = [...projetos].sort((a, c) => c.ano - a.ano);
+---
+<Base titulo="Projetos">
+  <section><div class="wrap">
+    <h1>Projetos</h1>
+    <p>Do mais recente ao mais antigo, organizados por edital e ano.</p>
+    {lista.map((p) => (
+      <article class="projeto" id={p.id}>
+        <span class="tag">{p.edital} · {p.ano}</span>
+        <h2>{p.titulo}</h2>
+        <p>{p.resumo}</p>
+        {p.fotos.length
+          ? <div class="galeria">{p.fotos.map((f) => <img src={`${b}/projetos/${f.src}`} alt={f.alt} loading="lazy" />)}</div>
+          : <div class="vazio">Fotos em breve.</div>}
+      </article>
+    ))}
+  </div></section>
+</Base>

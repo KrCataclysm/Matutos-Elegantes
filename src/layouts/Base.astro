@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+const { titulo, descricao = 'Ponto de Cultura — Associação Cultural Matutos Elegantes' } = Astro.props;
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = Astro.url.pathname.replace(/\/$/, '');
+const links = [['/', 'Início'], ['/sobre', 'Sobre'], ['/projetos', 'Projetos'], ['/transparencia', 'Transparência'], ['/contato', 'Contato']];
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Ponto de Cultura`}</title>
+  <meta name="description" content={descricao} />
+  <link rel="icon" href={`${b}/logo/logo-escuro.png`} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Chango&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="topo">
+    <div class="wrap">
+      <a href={`${b}/`}><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura" /></a>
+      <nav aria-label="Principal">
+        {links.map(([h, t]) => <a href={`${b}${h === '/' ? '/' : h}`} aria-current={path === `${b}${h === '/' ? '' : h}` ? 'page' : undefined}>{t}</a>)}
+      </nav>
+    </div>
+    <div class="faixa"></div>
+  </header>
+  <main><slot /></main>
+  <footer>
+    <div class="wrap">
+      <img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes" />
+      <p>Ponto de Cultura · Associação Cultural</p>
+      <p><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a> · <a href={`${b}/contato`}>Contato</a></p>
+    </div>
+  </footer>
+</body>
+</html>
