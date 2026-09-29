@@ -1,28 +1,36 @@
 ---
 import '../styles/global.css';
 import site from '../data/site.json';
-const { titulo, descricao = 'Ponto de Cultura — Associação Cultural Matutos Elegantes' } = Astro.props;
+import Bandeirinhas from '../components/Bandeirinhas.astro';
+const { titulo, descricao = 'Matutos Elegantes — Ponto de Cultura e Associação Cultural. Cultura popular, arte e identidade.' } = Astro.props;
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = Astro.url.pathname.replace(/\/$/, '');
 const links = [['/', 'Início'], ['/sobre', 'Sobre'], ['/projetos', 'Projetos'], ['/transparencia', 'Transparência'], ['/contato', 'Contato']];
+const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Ponto de Cultura`;
 ---
 <!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Ponto de Cultura`}</title>
+  <title>{tituloFull}</title>
   <meta name="description" content={descricao} />
+  <meta name="theme-color" content="#0b4a1e" />
+  <meta property="og:title" content={tituloFull} />
+  <meta property="og:description" content={descricao} />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content={`${Astro.site}${b.replace(/^\//, '')}/logo/logo-escuro.png`} />
   <link rel="icon" href={`${b}/logo/logo-escuro.png`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Chango&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Chango&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="topo">
     <div class="wrap">
-      <a href={`${b}/`}><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura" /></a>
-      <nav aria-label="Principal">
+      <a href={`${b}/`} aria-label="Matutos Elegantes — início"><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura" /></a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav id="nav" aria-label="Principal">
         {links.map(([h, t]) => <a href={`${b}${h === '/' ? '/' : h}`} aria-current={path === `${b}${h === '/' ? '' : h}` ? 'page' : undefined}>{t}</a>)}
       </nav>
     </div>
@@ -30,11 +38,19 @@ const links = [['/', 'Início'], ['/sobre', 'Sobre'], ['/projetos', 'Projetos'],
   </header>
   <main><slot /></main>
   <footer>
+    <Bandeirinhas />
     <div class="wrap">
       <img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes" />
       <p>Ponto de Cultura · Associação Cultural</p>
-      <p><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a> · <a href={`${b}/contato`}>Contato</a></p>
+      <p><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a> · <a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <small>© {new Date().getFullYear()} Associação Cultural Matutos Elegantes</small>
     </div>
   </footer>
+  <script is:inline>
+    const btn = document.querySelector('.menu-btn'), nav = document.getElementById('nav');
+    btn.addEventListener('click', () => btn.setAttribute('aria-expanded', nav.classList.toggle('aberto')));
+    const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add('vis'), io.unobserve(e.target))), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
 </body>
 </html>

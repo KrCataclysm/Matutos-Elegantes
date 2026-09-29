@@ -1,21 +1,51 @@
 ---
 import Base from '../layouts/Base.astro';
+import projetos from '../data/projetos.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
+const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
+const gotas = [['#ff5a14','8%','18%'],['#12a4b8','5%','62%'],['#6b3fa0','92%','20%'],['#e8358a','94%','64%'],['#6aa823','88%','85%'],['#f19200','12%','88%']];
+const faixa = ['Cultura popular','Tradição','Arte','Identidade','Comunidade','Festa','Memória'];
 ---
 <Base>
   <div class="hero">
+    {gotas.map(([c, x, y], i) => <span class="gota" style={`background:${c};left:${x};top:${y};animation-delay:${i * .8}s`}></span>)}
     <div class="wrap">
-      <img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura, Associação Cultural" />
+      <img class="logo" src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura, Associação Cultural" />
       <p>Cultura popular com orgulho, cor e chapéu de palha. Conheça a nossa história e os projetos que realizamos.</p>
-      <a class="btn" href={`${b}/projetos`}>Ver projetos</a>
+      <div class="acoes">
+        <a class="btn" href={`${b}/projetos`}>Ver projetos →</a>
+        <a class="btn sec" href={`${b}/sobre`}>Quem somos</a>
+      </div>
     </div>
   </div>
-  <div class="faixa"></div>
+  <div class="marquee" aria-hidden="true"><div>{[...faixa, ...faixa, ...faixa, ...faixa].map((t) => <span>{t}<b>✦</b></span>)}</div></div>
+
   <section>
-    <div class="wrap grid">
-      <div class="card"><h3>Sobre nós</h3><p>Quem somos e o que fazemos pela cultura.</p><a href={`${b}/sobre`}>Saiba mais →</a></div>
-      <div class="card"><h3>Projetos</h3><p>Ações organizadas por edital e ano.</p><a href={`${b}/projetos`}>Ver projetos →</a></div>
-      <div class="card"><h3>Transparência</h3><p>Prestação de contas institucional.</p><a href={`${b}/transparencia`}>Acessar →</a></div>
+    <div class="wrap">
+      <span class="kicker reveal">O que fazemos</span>
+      <h2 class="reveal"><span class="arco">Cultura que move</span> a comunidade</h2>
+      <p class="sub reveal">Uma associação cultural reconhecida como Ponto de Cultura, dedicada a valorizar a arte, a tradição e a identidade do nosso povo.</p>
+      <div class="grid" style="margin-top:2.5rem">
+        <div class="card reveal"><div class="num">1</div><h3>Sobre nós</h3><p>Quem somos, nossa missão e o que fazemos pela cultura.</p><a class="mais" href={`${b}/sobre`}>Saiba mais →</a></div>
+        <div class="card reveal"><div class="num">2</div><h3>Projetos</h3><p>Ações realizadas, organizadas por edital e por ano.</p><a class="mais" href={`${b}/projetos`}>Ver projetos →</a></div>
+        <div class="card reveal"><div class="num">3</div><h3>Transparência</h3><p>Prestação de contas clara e aberta a toda a comunidade.</p><a class="mais" href={`${b}/transparencia`}>Acessar →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="destaque">
+    <div class="wrap duas">
+      <div class="reveal">
+        <span class="kicker" style="color:var(--palha)">Em destaque</span>
+        <h2>{atual.titulo}</h2>
+        <p class="sub">{atual.resumo}</p>
+        <a class="btn" href={`${b}/projetos#${atual.id}`}>Conhecer o projeto →</a>
+      </div>
+      <div class="painel reveal">
+        <h3>{atual.edital}</h3>
+        <p>Fotos, atividades e resultados publicados em breve.</p>
+        <span class="tag">{atual.ano}</span>
+      </div>
     </div>
   </section>
 </Base>

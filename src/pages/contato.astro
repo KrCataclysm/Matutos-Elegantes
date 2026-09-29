@@ -3,11 +3,13 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 ---
 <Base titulo="Contato">
+  <div class="pagina-topo"><div class="wrap"><h1>Contato</h1><p>Fale com a gente — parcerias, projetos e apoio à cultura.</p></div></div>
+  <div class="faixa"></div>
   <section><div class="wrap">
-    <h1>Contato</h1>
-    <ul>
-      <li>Instagram: <a href={site.instagram} rel="noopener">{site.instagramUsuario}</a></li>
-    </ul>
+    <div class="contatos">
+      <div class="card"><strong>E-mail</strong><a href={`mailto:${site.email}`}>{site.email}</a></div>
+      <div class="card"><strong>Instagram</strong><a href={site.instagram} rel="noopener">{site.instagramUsuario}</a></div>
+    </div>
     {site.formspree && (
       <form action={site.formspree} method="POST">
         <input name="nome" placeholder="Seu nome" required />
@@ -16,9 +18,5 @@ import site from '../data/site.json';
         <button class="btn" type="submit">Enviar</button>
       </form>
     )}
-  </div></section>
-  <section class="escuro"><div class="wrap">
-    <h2>Instagram</h2>
-    <p>Acompanhe as novidades no nosso perfil oficial: <a href={site.instagram} rel="noopener">{site.instagramUsuario}</a>.</p>
   </div></section>
 </Base>
