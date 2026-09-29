@@ -2,14 +2,17 @@
 import Base from '../layouts/Base.astro';
 import Bandeirinhas from '../components/Bandeirinhas.astro';
 import site from '../data/site.json';
+const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<Base titulo="Contato">
-  <div class="pagina-topo pg-contato"><Bandeirinhas /><div class="wrap"><h1>Contato</h1><p>Fale com a gente — parcerias, projetos e apoio à cultura.</p></div></div>
-  <div class="faixa"></div>
+<Base titulo="Contato" descricao="Fale com a Associação Cultural Matutos Elegantes.">
+  <div class="pagina-topo pg-contato">
+    <Bandeirinhas />
+    <div class="wrap"><div class="trilha"><a href={`${b}/`}>Início</a> / Contato</div><h1 data-split>Contato</h1><p>Fale com a gente — parcerias, projetos e apoio à cultura.</p></div>
+  </div>
   <section><div class="wrap">
     <div class="contato-blocos">
-      <a class="c-bloco c-verde reveal" href={`mailto:${site.email}`}><span>E-mail</span><strong>{site.email}</strong><i aria-hidden="true">→</i></a>
-      <a class="c-bloco c-rosa reveal" href={site.instagram} rel="noopener"><span>Instagram</span><strong>{site.instagramUsuario}</strong><i aria-hidden="true">→</i></a>
+      <a class="c-bloco c-verde reveal" data-magnetic href={`mailto:${site.email}`}><span>E-mail</span><strong>{site.email}</strong><i aria-hidden="true">→</i></a>
+      <a class="c-bloco c-terra reveal" data-magnetic href={site.instagram} rel="noopener"><span>Instagram</span><strong>{site.instagramUsuario}</strong><i aria-hidden="true">→</i></a>
     </div>
     {site.formspree && (
       <form action={site.formspree} method="POST">

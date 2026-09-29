@@ -5,38 +5,38 @@ import sobre from '../data/sobre.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base titulo="Sobre" descricao="Conheça a Associação Cultural Matutos Elegantes, reconhecida como Ponto de Cultura.">
-  <div class="pagina-topo pg-sobre"><Bandeirinhas /><div class="wrap"><h1>Sobre a Matutos Elegantes</h1><p>Associação Cultural · Ponto de Cultura</p></div></div>
-  <div class="faixa"></div>
+  <div class="pagina-topo pg-sobre">
+    <Bandeirinhas />
+    <div class="wrap"><div class="trilha"><a href={`${b}/`}>Início</a> / Sobre</div><h1 data-split>Sobre a Matutos Elegantes</h1><p>Associação Cultural · Ponto de Cultura</p></div>
+  </div>
   <section><div class="wrap">
     <div class="duas-col">
       <div class="reveal">
-        <span class="kicker">Quem somos</span>
+        <span class="rotulo">Quem somos</span>
         <h2>Associação Cultural Matutos Elegantes</h2>
-        {sobre.apresentacao
-          ? <p class="sub">{sobre.apresentacao}</p>
-          : <p class="sub">Associação cultural reconhecida como Ponto de Cultura, dedicada à valorização da arte, da tradição e da identidade popular.</p>}
+        <p class="texto-grande">{sobre.apresentacao || 'Associação cultural reconhecida como Ponto de Cultura, dedicada à valorização da arte, da tradição e da identidade popular.'}</p>
         {sobre.fundacao && <p><strong>Fundação:</strong> {sobre.fundacao}</p>}
         {sobre.missao && <><h3>Missão</h3><p>{sobre.missao}</p></>}
       </div>
       <p class="texto-lateral reveal">Uma associação cultural que reúne arte, tradição e identidade popular em torno de um Ponto de Cultura.</p>
     </div>
     {sobre.eixos.length > 0 && (
-      <div class="grid" style="margin-top:3rem">
-        {sobre.eixos.map((e) => <div class="card reveal"><h3>{e.titulo}</h3><p>{e.texto}</p></div>)}
-      </div>
+      <div class="eixos">{sobre.eixos.map((e) => <div class="reveal"><h3>{e.titulo}</h3><p>{e.texto}</p></div>)}</div>
     )}
   </div></section>
 
-  <section class="bloco-cor bloco-roxo">
+  <section class="bloco-cor">
     <div class="wrap reveal">
-      <span class="kicker">Para entender</span>
+      <span class="rotulo">Para entender</span>
       <h2>O que é um <em>Ponto de Cultura</em>?</h2>
       <p class="citacao-grande">Pontos de Cultura são organizações culturais da sociedade civil reconhecidas pelo poder público no âmbito da Política Nacional de Cultura Viva, que valorizam a diversidade e fortalecem a cultura nos territórios onde atuam.</p>
     </div>
   </section>
 
-  <section><div class="wrap">    <div class="cta-linha reveal">
-      <p>Conheça o que já realizamos.</p>
-      <a class="btn" href={`${b}/projetos`}>Ver projetos →</a>
-    </div></div></section>
+  <section><div class="wrap">
+    <div class="chamada reveal">
+      <p>Conheça o que já realizamos</p>
+      <a class="btn" data-magnetic href={`${b}/projetos`}>Ver projetos →</a>
+    </div>
+  </div></section>
 </Base>

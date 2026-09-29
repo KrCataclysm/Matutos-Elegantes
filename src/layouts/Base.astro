@@ -15,7 +15,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{tituloFull}</title>
   <meta name="description" content={descricao} />
-  <meta name="theme-color" content="#0b4a1e" />
+  <meta name="theme-color" content="#072f15" />
   <meta property="og:title" content={tituloFull} />
   <meta property="og:description" content={descricao} />
   <meta property="og:type" content="website" />
@@ -32,8 +32,8 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'NGO', name: 'Associação Cultural Matutos Elegantes', alternateName: 'Matutos Elegantes — Ponto de Cultura', url: new URL(`${b}/`, Astro.site).href, logo: new URL(`${b}/icon-512.png`, Astro.site).href, email: site.email, sameAs: [site.instagram] })} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..900,0..100,0..1;1,9..144,400..900,0..100,0..1&display=swap" rel="stylesheet" />
+  <script is:inline>document.documentElement.classList.add('js')</script>
 </head>
 <body>
   <div class="progresso" aria-hidden="true"><i id="prog"></i></div>
@@ -46,26 +46,99 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
         {links.map(([h, t]) => <a href={`${b}${h === '/' ? '/' : h}`} aria-current={path === `${b}${h === '/' ? '' : h}` ? 'page' : undefined}>{t}</a>)}
       </nav>
     </div>
-    <div class="faixa"></div>
   </header>
   <main id="conteudo"><slot /></main>
   <footer>
     <Bandeirinhas />
     <div class="wrap">
-      <img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes" />
-      <p>Ponto de Cultura · Associação Cultural</p>
-      <p><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a><a href={`mailto:${site.email}`}>{site.email}</a></p>
-      <small>© {new Date().getFullYear()} Associação Cultural Matutos Elegantes</small>
+      <div><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes" /></div>
+      <div><h4>Navegação</h4>{links.map(([h, t]) => <a href={`${b}${h === '/' ? '/' : h}`}>{t}</a>)}</div>
+      <div><h4>Contato</h4><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a></div>
     </div>
+    <div class="legal">© {new Date().getFullYear()} Associação Cultural Matutos Elegantes · Ponto de Cultura</div>
   </footer>
   <script is:inline>
-    const prog = document.getElementById('prog');
-    const upd = () => { const h = document.documentElement.scrollHeight - innerHeight; prog.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')'; };
-    addEventListener('scroll', upd, { passive: true }); upd();
-    const btn = document.querySelector('.menu-btn'), nav = document.getElementById('nav');
-    btn.addEventListener('click', () => btn.setAttribute('aria-expanded', nav.classList.toggle('aberto')));
-    const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add('vis'), io.unobserve(e.target))), { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    (function () {
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var root = document.documentElement;
+      // menu
+      var btn = document.querySelector('.menu-btn'), nav = document.getElementById('nav');
+      btn.addEventListener('click', function () { btn.setAttribute('aria-expanded', nav.classList.toggle('aberto')); });
+      // barra de progresso
+      var prog = document.getElementById('prog');
+      // divide textos em palavras (máscara) e em palavras "scrub"
+      function words(el, cls, inner) {
+        var i = 0;
+        (function walk(node) {
+          Array.prototype.slice.call(node.childNodes).forEach(function (c) {
+            if (c.nodeType === 3) {
+              var frag = document.createDocumentFragment();
+              c.textContent.split(/(\s+)/).forEach(function (t) {
+                if (!t) return;
+                if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(' ')); return; }
+                var w = document.createElement('span'); w.className = cls; w.style.setProperty('--i', i++);
+                if (inner) { var s = document.createElement('span'); s.className = inner; s.textContent = t; w.appendChild(s); } else { w.textContent = t; }
+                frag.appendChild(w);
+              });
+              node.replaceChild(frag, c);
+            } else if (c.nodeType === 1) walk(c);
+          });
+        })(el);
+      }
+      var splits = document.querySelectorAll('[data-split]');
+      splits.forEach(function (el) { el.setAttribute('aria-label', el.textContent.trim()); words(el, 'w', 'wi'); el.querySelectorAll('.w').forEach(function (w) { w.setAttribute('aria-hidden', 'true'); }); });
+      var scrubs = document.querySelectorAll('[data-scrub]');
+      scrubs.forEach(function (el) { el.setAttribute('aria-label', el.textContent.trim()); words(el, 'sw', null); el.querySelectorAll('.sw').forEach(function (w) { w.setAttribute('aria-hidden', 'true'); }); });
+      // entrada por rolagem
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); if (e.target.hasAttribute('data-count')) count(e.target); } });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal,[data-split],[data-count]').forEach(function (el) { io.observe(el); });
+      // contador
+      function count(el) {
+        var to = +el.getAttribute('data-count'), from = +(el.getAttribute('data-from') || to - 6), t0 = null;
+        if (reduce) { el.textContent = to; return; }
+        function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / 1600, 1), e = 1 - Math.pow(1 - p, 4); el.textContent = Math.round(from + (to - from) * e); if (p < 1) requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      }
+      if (reduce) { scrubs.forEach(function (el) { el.querySelectorAll('.sw').forEach(function (w) { w.style.opacity = 1; }); }); return; }
+      // scrub de palavras + parallax + progresso
+      var pars = document.querySelectorAll('[data-parallax]');
+      function frame() {
+        var h = root.scrollHeight - innerHeight;
+        prog.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+        scrubs.forEach(function (el) {
+          var r = el.getBoundingClientRect(), p = (innerHeight * 0.85 - r.top) / (innerHeight * 0.6);
+          p = Math.max(0, Math.min(1, p));
+          var ws = el.querySelectorAll('.sw'), n = ws.length;
+          ws.forEach(function (w, i) { var q = Math.max(0, Math.min(1, p * (n + 4) / n * 1 - i / n)); w.style.opacity = (0.16 + 0.84 * q).toFixed(3); });
+        });
+        pars.forEach(function (el) {
+          var r = el.getBoundingClientRect(), c = r.top + r.height / 2 - innerHeight / 2, s = +el.getAttribute('data-parallax') || 0.1;
+          el.style.transform = 'translate3d(0,' + (-c * s).toFixed(1) + 'px,0)';
+        });
+      }
+      var tick = false;
+      addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(function () { frame(); tick = false; }); } }, { passive: true });
+      addEventListener('resize', frame); frame();
+      // botões magnéticos (somente mouse)
+      document.querySelectorAll('[data-magnetic]').forEach(function (el) {
+        el.addEventListener('pointermove', function (e) {
+          if (e.pointerType !== 'mouse') return;
+          var r = el.getBoundingClientRect();
+          el.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * 0.25).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * 0.35).toFixed(1) + 'px)';
+        });
+        el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+      });
+      // inclinação do logo com o cursor
+      var tilt = document.querySelector('[data-tilt]');
+      if (tilt) tilt.parentElement.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse') return;
+        var r = tilt.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        tilt.style.transform = 'perspective(900px) rotateY(' + (x * 10).toFixed(2) + 'deg) rotateX(' + (-y * 8).toFixed(2) + 'deg)';
+      });
+      if (tilt) tilt.parentElement.addEventListener('pointerleave', function () { tilt.style.transform = ''; });
+    })();
   </script>
 </body>
 </html>
