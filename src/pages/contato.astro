@@ -6,8 +6,6 @@ import site from '../data/site.json';
   <section><div class="wrap">
     <h1>Contato</h1>
     <ul>
-      <li>E-mail: <a href={`mailto:${site.email}`}>{site.email}</a></li>
-      <li>WhatsApp: <a href={`https://wa.me/${site.whatsapp}`} rel="noopener">chamar</a></li>
       <li>Instagram: <a href={site.instagram} rel="noopener">{site.instagramUsuario}</a></li>
     </ul>
     {site.formspree && (
@@ -21,6 +19,6 @@ import site from '../data/site.json';
   </div></section>
   <section class="escuro"><div class="wrap">
     <h2>Instagram</h2>
-    <p>Embed oEmbed a ativar quando o perfil oficial for confirmado (ver <code>site.json</code>).</p>
+    <p>Acompanhe as novidades no nosso perfil oficial: <a href={site.instagram} rel="noopener">{site.instagramUsuario}</a>.</p>
   </div></section>
 </Base>
