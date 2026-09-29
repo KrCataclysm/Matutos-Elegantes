@@ -207,3 +207,15 @@ footer .bandeirinhas{color:rgba(255,255,255,.35)}
 .projeto{box-shadow:none;border:1px solid var(--linha)}
 .tag{border-radius:3px}
 .destaque .btn,.destaque .btn:hover{box-shadow:none}
+
+/* contraste AA (texto branco sobre cor, texto colorido sobre claro) */
+.btn{background:#c8420a}.btn:hover{background:#a83607}
+.kicker{color:#b83a08}
+.grid .card:nth-child(1){background:#c8420a}
+.grid .card:nth-child(2){background:#0a7d8e}
+.cta-banda{background:#c2246a}.cta-banda .btn{background:#fff;color:#c2246a}
+.pg-sobre{--cor-pg:#c8420a}.pg-contato{--cor-pg:#0a7d8e}
+.destaque .btn{background:var(--verde-esc)}.destaque .btn:hover{background:#000}
+.marquee{background:#c8420a}
+.hero .btn.sec,.hero .acoes .btn.sec{background:transparent}
+.card{box-shadow:none;border:1px solid var(--linha);border-radius:6px}.card:hover{box-shadow:none}
