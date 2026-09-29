@@ -11,9 +11,10 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
     <a class="contato-linha reveal" href={site.instagram} rel="noopener"><span>Instagram</span><strong>{site.instagramUsuario}</strong></a>
     {site.formspree && (
       <form action={site.formspree} method="POST">
-        <input name="nome" placeholder="Seu nome" required />
-        <input name="email" type="email" placeholder="Seu e-mail" required />
-        <textarea name="mensagem" rows="5" placeholder="Mensagem" required></textarea>
+        <label><span>Nome</span><input name="nome" autocomplete="name" required /></label>
+        <label><span>E-mail</span><input name="email" type="email" autocomplete="email" required /></label>
+        <label><span>Mensagem</span><textarea name="mensagem" rows="5" required></textarea></label>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
         <button class="btn" type="submit">Enviar</button>
       </form>
     )}
