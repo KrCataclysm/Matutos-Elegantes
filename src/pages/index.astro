@@ -2,64 +2,62 @@
 import Base from '../layouts/Base.astro';
 import projetos from '../data/projetos.json';
 import site from '../data/site.json';
+import Bandeirinhas from '../components/Bandeirinhas.astro';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
-const itens = [
-  ['01', 'Sobre nós', 'Quem somos, nossa missão e o que fazemos pela cultura.', '/sobre', 'var(--laranja)'],
-  ['02', 'Projetos', 'Ações realizadas, organizadas por edital e por ano.', '/projetos', 'var(--azul)'],
-  ['03', 'Transparência', 'Prestação de contas clara e aberta a toda a comunidade.', '/transparencia', 'var(--roxo)'],
-  ['04', 'Contato', 'Parcerias, projetos e apoio à cultura popular.', '/contato', 'var(--ciano)'],
-];
 ---
 <Base>
   <div class="hero">
+    <Bandeirinhas />
     <div class="wrap">
-      <div>
-        <span class="rotulo" style="color:var(--palha)">Ponto de Cultura · Associação Cultural</span>
-        <h1>Cultura popular com orgulho e <em>cor</em></h1>
-        <p>Conheça a nossa história e os projetos que realizamos.</p>
-        <div class="acoes">
-          <a class="btn" href={`${b}/projetos`}>Ver projetos</a>
-          <a class="btn vazado" href={`${b}/sobre`}>Quem somos</a>
-        </div>
-      </div>
       <img class="logo" src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura, Associação Cultural" />
+      <h1>Cultura popular com <em>orgulho, cor</em> e chapéu de palha</h1>
+      <p>Conheça a nossa história e os projetos que realizamos.</p>
+      <div class="acoes">
+        <a class="btn" href={`${b}/projetos`}>Ver projetos →</a>
+        <a class="btn sec" href={`${b}/sobre`}>Quem somos</a>
+      </div>
     </div>
   </div>
-  <div class="regua" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
-  <section>
+  <div class="marquee-wrap"><div class="marquee" aria-hidden="true"><div>{[...Array(8)].flatMap(() => ['Cultura popular','Tradição','Arte','Identidade','Comunidade','Festa','Memória']).map((t) => <span>{t}<b></b></span>)}</div></div></div>
+
+  <section class="papel">
     <div class="wrap">
-      <span class="rotulo reveal" style="color:var(--laranja)">O que fazemos</span>
-      <h2 class="reveal" style="max-width:16ch">Cultura que move a comunidade</h2>
-      <p class="texto-grande reveal" style="max-width:40rem;color:var(--suave)">Uma associação cultural reconhecida como Ponto de Cultura, dedicada a valorizar a arte, a tradição e a identidade do nosso povo.</p>
-      <div class="lista">
-        {itens.map(([n, t, d, h, c]) => (
-          <a class="reveal" href={`${b}${h}`} style={`--cor:${c}`}><span class="n">{n}</span><h3>{t}</h3><span class="seta">→</span><p>{d}</p></a>
-        ))}
+      <span class="kicker reveal">O que fazemos</span>
+      <h2 class="reveal">Cultura que <em class="c-laranja">move</em> a comunidade</h2>
+      <p class="sub reveal">Uma associação cultural reconhecida como Ponto de Cultura, dedicada a valorizar a arte, a tradição e a identidade do nosso povo.</p>
+      <div class="grid" style="margin-top:2.5rem">
+        <div class="card reveal"><h3>Sobre nós</h3><p>Quem somos, nossa missão e o que fazemos pela cultura.</p><a class="mais" href={`${b}/sobre`}>Saiba mais →</a></div>
+        <div class="card reveal"><h3>Projetos</h3><p>Ações realizadas, organizadas por edital e por ano.</p><a class="mais" href={`${b}/projetos`}>Ver projetos →</a></div>
+        <div class="card reveal"><h3>Transparência</h3><p>Prestação de contas clara e aberta a toda a comunidade.</p><a class="mais" href={`${b}/transparencia`}>Acessar →</a></div>
       </div>
     </div>
   </section>
 
   <section class="destaque">
-    <div class="wrap">
+    <div class="wrap duas">
       <div class="reveal">
-        <span class="rotulo">Em destaque</span>
+        <span class="kicker">Em destaque</span>
         <h2>{atual.titulo}</h2>
-        <p>{atual.resumo}</p>
-        <a class="btn" href={`${b}/projetos#${atual.id}`}>Conhecer o projeto</a>
+        <p class="sub">{atual.resumo}</p>
+        <a class="btn" href={`${b}/projetos#${atual.id}`}>Conhecer o projeto →</a>
       </div>
-      <div class="ano reveal" aria-hidden="true">{atual.ano}<small>{atual.edital}</small></div>
+      <div class="painel reveal">
+        <h3>{atual.edital}</h3>
+        <p>Fotos, atividades e resultados publicados em breve.</p>
+        <span class="tag">{atual.ano}</span>
+      </div>
     </div>
   </section>
-
-  <section class="insta">
-    <div class="wrap reveal">
+  <section>
+    <div class="wrap cta-banda reveal">
       <div>
-        <h2>Acompanhe no Instagram</h2>
-        <p>Novidades, eventos e bastidores dos nossos projetos.</p>
+        <span class="kicker">Acompanhe</span>
+        <h2>Fique por dentro do que <em>acontece</em></h2>
+        <p class="sub">Novidades, eventos e bastidores dos nossos projetos no Instagram.</p>
       </div>
-      <a class="btn escuro" href={site.instagram} rel="noopener">Seguir {site.instagramUsuario}</a>
+      <a class="btn" href={site.instagram} rel="noopener">Seguir {site.instagramUsuario} →</a>
     </div>
   </section>
 </Base>

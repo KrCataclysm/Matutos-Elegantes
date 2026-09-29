@@ -3,7 +3,10 @@ import Base from '../layouts/Base.astro';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base titulo="Página não encontrada">
-  <div class="pagina-topo pg-erro"><div class="wrap"><div class="trilha"><a href={`${b}/`}>Início</a> / Erro 404</div><h1>Página não encontrada</h1><p>O endereço pode ter mudado. Volte ao início e continue explorando.</p></div></div>
-  <div class="regua" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <section><div class="wrap"><a class="btn" href={`${b}/`}>Voltar ao início</a></div></section>
+  <section><div class="wrap" style="text-align:center">
+    <span class="kicker">Erro 404</span>
+    <h1>Essa página não existe</h1>
+    <p class="sub" style="margin:1rem auto 2rem">O endereço pode ter mudado. Volte ao início e continue explorando.</p>
+    <a class="btn" href={`${b}/`}>Voltar ao início</a>
+  </div></section>
 </Base>

@@ -1,25 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
+import Bandeirinhas from '../components/Bandeirinhas.astro';
 import projetos from '../data/projetos.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const lista = [...projetos].sort((a, c) => c.ano - a.ano);
-const cores = ['var(--laranja)', 'var(--ciano)', 'var(--roxo)', 'var(--pink)', 'var(--azul)', 'var(--lima)'];
 ---
-<Base titulo="Projetos" descricao="Projetos da Matutos Elegantes organizados por edital e ano.">
-  <div class="pagina-topo pg-projetos"><div class="wrap"><div class="trilha"><a href={`${b}/`}>Início</a> / Projetos</div><h1>Projetos</h1><p>Do mais recente ao mais antigo, organizados por edital e ano.</p></div></div>
-  <div class="regua" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<Base titulo="Projetos">
+  <div class="pagina-topo pg-projetos"><Bandeirinhas /><div class="wrap"><h1>Projetos</h1><p>Do mais recente ao mais antigo, organizados por edital e ano.</p></div></div>
+  <div class="faixa"></div>
   <section><div class="wrap">
-    {lista.map((p, i) => (
-      <article class="projeto reveal" id={p.id} style={`--cor:${cores[i % cores.length]}`}>
-        <div class="ano" aria-hidden="true">{p.ano}</div>
-        <div>
-          <span class="tag">{p.edital}</span>
-          {p.titulo !== String(p.ano) && <h2>{p.titulo}</h2>}
-          <p>{p.resumo}</p>
-          {p.fotos.length
-            ? <div class="galeria">{p.fotos.map((f) => <img src={`${b}/projetos/${f.src}`} alt={f.alt} loading="lazy" />)}</div>
-            : <div class="vazio">Registro fotográfico em breve.</div>}
-        </div>
+    {lista.map((p) => (
+      <article class="projeto reveal" id={p.id}>
+        <span class="tag">{p.edital} · {p.ano}</span>
+        <h2>{p.titulo}</h2>
+        <p>{p.resumo}</p>
+        {p.fotos.length
+          ? <div class="galeria">{p.fotos.map((f) => <img src={`${b}/projetos/${f.src}`} alt={f.alt} loading="lazy" />)}</div>
+          : <div class="vazio">Fotos em breve.</div>}
       </article>
     ))}
   </div></section>
