@@ -117,3 +117,5 @@ section{padding:clamp(3rem,8vw,5rem) 0}
 }
 @media (min-width:1500px){body{font-size:1.2rem}.wrap{width:min(1240px,100% - 4rem)}}
 @media print{header.topo,.marquee,.bandeirinhas,.gota{display:none}body{background:#fff}}
+footer a,.contatos a{overflow-wrap:anywhere;max-width:100%}
+@media (max-height:480px) and (orientation:landscape){header.topo{position:static}.hero img.logo{width:min(320px,50vw)}}
