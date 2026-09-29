@@ -80,7 +80,7 @@ export function FloatingNav(): ReactElement {
             elevated ? 'bg-ivory/85 shadow-float' : 'bg-ivory/55'
           }`}
         >
-          <Link href="/" className="font-display text-[1.15rem] leading-none tracking-tight" aria-label="Matutos Elegantes — página inicial">
+          <Link href="/" className="font-display text-[1.15rem] leading-none tracking-tight" aria-label="Matutos Elegantes, página inicial">
             Matutos <span className="italic text-gold-deep">Elegantes</span>
           </Link>
 

@@ -8,7 +8,7 @@ const display = Playfair_Display({ subsets: ['latin'], style: ['normal', 'italic
 const sans = Jost({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
 export const metadata: Metadata = {
-  title: { default: 'Matutos Elegantes — Ponto de Cultura', template: '%s · Matutos Elegantes' },
+  title: { default: 'Matutos Elegantes, Ponto de Cultura', template: '%s · Matutos Elegantes' },
   description: 'Galeria e plataforma cultural da Associação Cultural Matutos Elegantes, Ponto de Cultura.',
   openGraph: { type: 'website', locale: 'pt_BR', siteName: 'Matutos Elegantes' },
 };

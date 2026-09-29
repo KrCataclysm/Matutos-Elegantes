@@ -8,7 +8,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { href: '/contato/', label: 'Contato', index: '05' },
 ] as const;
 
-/** Obras de demonstração geradas por código — trocar por acervo real (campo `image`). */
+/** Obras de demonstração geradas por código, trocar por acervo real (campo `image`). */
 export const ARTWORKS: readonly Artwork[] = [
   {
     id: 'a-001',
