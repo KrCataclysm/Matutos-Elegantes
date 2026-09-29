@@ -1,31 +1,36 @@
 ---
 import Base from '../layouts/Base.astro';
+import Bandeirinhas from '../components/Bandeirinhas.astro';
 import sobre from '../data/sobre.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base titulo="Sobre" descricao="Conheça a Associação Cultural Matutos Elegantes, reconhecida como Ponto de Cultura.">
-  <div class="pagina-topo pg-sobre"><div class="wrap"><div class="trilha"><a href={`${b}/`}>Início</a> / Sobre</div><h1>Sobre a Matutos Elegantes</h1><p>Associação Cultural · Ponto de Cultura</p></div></div>
-  <div class="regua" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="pagina-topo pg-sobre"><Bandeirinhas /><div class="wrap"><h1>Sobre a Matutos Elegantes</h1><p>Associação Cultural · Ponto de Cultura</p></div></div>
+  <div class="faixa"></div>
   <section><div class="wrap">
     <div class="duas-col">
       <div class="reveal">
-        <span class="rotulo" style="color:var(--laranja)">Quem somos</span>
+        <span class="kicker">Quem somos</span>
         <h2>Associação Cultural Matutos Elegantes</h2>
-        <p class="texto-grande">{sobre.apresentacao || 'Associação cultural reconhecida como Ponto de Cultura, dedicada à valorização da arte, da tradição e da identidade popular.'}</p>
+        {sobre.apresentacao
+          ? <p class="sub">{sobre.apresentacao}</p>
+          : <p class="sub">Associação cultural reconhecida como Ponto de Cultura, dedicada à valorização da arte, da tradição e da identidade popular.</p>}
         {sobre.fundacao && <p><strong>Fundação:</strong> {sobre.fundacao}</p>}
         {sobre.missao && <><h3>Missão</h3><p>{sobre.missao}</p></>}
       </div>
-      <aside class="citacao reveal">
+      <aside class="card reveal">
         <h3>O que é um Ponto de Cultura?</h3>
         <p>Pontos de Cultura são organizações culturais da sociedade civil reconhecidas pelo poder público no âmbito da Política Nacional de Cultura Viva, que valorizam a diversidade e fortalecem a cultura nos territórios onde atuam.</p>
       </aside>
     </div>
     {sobre.eixos.length > 0 && (
-      <div class="eixos">{sobre.eixos.map((e) => <div class="reveal"><h3>{e.titulo}</h3><p>{e.texto}</p></div>)}</div>
+      <div class="grid" style="margin-top:3rem">
+        {sobre.eixos.map((e) => <div class="card reveal"><h3>{e.titulo}</h3><p>{e.texto}</p></div>)}
+      </div>
     )}
-    <div class="chamada reveal">
-      <p>Conheça o que já realizamos</p>
-      <a class="btn" href={`${b}/projetos`}>Ver projetos</a>
+    <div class="cta-linha reveal">
+      <p>Conheça o que já realizamos.</p>
+      <a class="btn" href={`${b}/projetos`}>Ver projetos →</a>
     </div>
   </div></section>
 </Base>
