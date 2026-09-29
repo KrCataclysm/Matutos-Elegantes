@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import site from '../data/site.json';
-import Bandeirinhas from '../components/Bandeirinhas.astro';
 const { titulo, descricao = 'Matutos Elegantes — Ponto de Cultura e Associação Cultural. Cultura popular, arte e identidade.' } = Astro.props;
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = Astro.url.pathname.replace(/\/$/, '');
@@ -15,7 +14,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{tituloFull}</title>
   <meta name="description" content={descricao} />
-  <meta name="theme-color" content="#0b4a1e" />
+  <meta name="theme-color" content="#0a0a0a" />
   <meta property="og:title" content={tituloFull} />
   <meta property="og:description" content={descricao} />
   <meta property="og:type" content="website" />
@@ -32,7 +31,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'NGO', name: 'Associação Cultural Matutos Elegantes', alternateName: 'Matutos Elegantes — Ponto de Cultura', url: new URL(`${b}/`, Astro.site).href, logo: new URL(`${b}/icon-512.png`, Astro.site).href, email: site.email, sameAs: [site.instagram] })} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <a class="pula" href="#conteudo">Pular para o conteúdo</a>
@@ -44,17 +43,16 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
         {links.map(([h, t]) => <a href={`${b}${h === '/' ? '/' : h}`} aria-current={path === `${b}${h === '/' ? '' : h}` ? 'page' : undefined}>{t}</a>)}
       </nav>
     </div>
-    <div class="faixa"></div>
   </header>
   <main id="conteudo"><slot /></main>
+  <div class="regua" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <footer>
-    <Bandeirinhas />
     <div class="wrap">
-      <img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes" />
-      <p>Ponto de Cultura · Associação Cultural</p>
-      <p><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a><a href={`mailto:${site.email}`}>{site.email}</a></p>
-      <small>© {new Date().getFullYear()} Associação Cultural Matutos Elegantes</small>
+      <div><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes" /></div>
+      <div><h4>Navegação</h4>{links.map(([h, t]) => <a href={`${b}${h === '/' ? '/' : h}`}>{t}</a>)}</div>
+      <div><h4>Contato</h4><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.instagram} rel="noopener">Instagram {site.instagramUsuario}</a></div>
     </div>
+    <div class="legal">© {new Date().getFullYear()} Associação Cultural Matutos Elegantes · Ponto de Cultura</div>
   </footer>
   <script is:inline>
     const btn = document.querySelector('.menu-btn'), nav = document.getElementById('nav');
