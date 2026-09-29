@@ -1,10 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import Bandeirinhas from '../components/Bandeirinhas.astro';
 import sobre from '../data/sobre.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Base titulo="Sobre" descricao="Conheça a Associação Cultural Matutos Elegantes, reconhecida como Ponto de Cultura.">
-  <div class="pagina-topo"><div class="wrap"><h1>Sobre a Matutos Elegantes</h1><p>Associação Cultural · Ponto de Cultura</p></div></div>
+  <div class="pagina-topo pg-sobre"><Bandeirinhas /><div class="wrap"><h1>Sobre a Matutos Elegantes</h1><p>Associação Cultural · Ponto de Cultura</p></div></div>
   <div class="faixa"></div>
   <section><div class="wrap">
     <div class="duas-col">
