@@ -18,8 +18,17 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <meta property="og:title" content={tituloFull} />
   <meta property="og:description" content={descricao} />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content={`${Astro.site}${b.replace(/^\//, '')}/logo/logo-escuro.png`} />
-  <link rel="icon" href={`${b}/logo/logo-escuro.png`} />
+  <meta property="og:image" content={new URL(`${b}/og.png`, Astro.site).href} />
+  <link rel="icon" type="image/png" href={`${b}/favicon.png`} />
+  <link rel="apple-touch-icon" href={`${b}/apple-touch-icon.png`} />
+  <link rel="manifest" href={`${b}/manifest.webmanifest`} />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
+  <link rel="sitemap" href={`${b}/sitemap-index.xml`} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content={site.nome} />
+  <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />
+  <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'NGO', name: 'Associação Cultural Matutos Elegantes', alternateName: 'Matutos Elegantes — Ponto de Cultura', url: new URL(`${b}/`, Astro.site).href, logo: new URL(`${b}/icon-512.png`, Astro.site).href, email: site.email, sameAs: [site.instagram] })} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
