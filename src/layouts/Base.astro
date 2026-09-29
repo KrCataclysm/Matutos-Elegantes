@@ -26,6 +26,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Chango&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <a class="pula" href="#conteudo">Pular para o conteúdo</a>
   <header class="topo">
     <div class="wrap">
       <a href={`${b}/`} aria-label="Matutos Elegantes — início"><img src={`${b}/logo/logo-escuro.png`} alt="Matutos Elegantes — Ponto de Cultura" /></a>
@@ -36,7 +37,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
     </div>
     <div class="faixa"></div>
   </header>
-  <main><slot /></main>
+  <main id="conteudo"><slot /></main>
   <footer>
     <Bandeirinhas />
     <div class="wrap">
