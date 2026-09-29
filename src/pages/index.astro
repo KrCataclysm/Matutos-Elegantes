@@ -5,10 +5,10 @@ import site from '../data/site.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
 const itens = [
-  ['01', 'Sobre nós', 'Quem somos, nossa missão e o que fazemos pela cultura.', '/sobre', 'var(--laranja-t)'],
-  ['02', 'Projetos', 'Ações realizadas, organizadas por edital e por ano.', '/projetos', 'var(--azul)'],
-  ['03', 'Transparência', 'Prestação de contas clara e aberta a toda a comunidade.', '/transparencia', 'var(--roxo)'],
-  ['04', 'Contato', 'Parcerias, projetos e apoio à cultura popular.', '/contato', 'var(--ciano-t)'],
+  ['01', 'Sobre nós', 'Quem somos, nossa missão e o que fazemos pela cultura.', '/sobre', 'var(--verde)'],
+  ['02', 'Projetos', 'Ações realizadas, organizadas por edital e por ano.', '/projetos', 'var(--verde)'],
+  ['03', 'Transparência', 'Prestação de contas clara e aberta a toda a comunidade.', '/transparencia', 'var(--verde)'],
+  ['04', 'Contato', 'Parcerias, projetos e apoio à cultura popular.', '/contato', 'var(--verde)'],
 ];
 ---
 <Base>
@@ -56,7 +56,7 @@ const itens = [
   <section class="parceria">
     <div class="wrap reveal">
       <div>
-        <span class="rotulo" style="color:var(--palha)">Parcerias e apoio</span>
+        <span class="rotulo" style="color:var(--laranja-t)">Parcerias e apoio</span>
         <h2>Vamos fazer cultura juntos</h2>
         <p>Instituições, produtores, artistas e apoiadores: fale com a gente para construir novas ações.</p>
       </div>
