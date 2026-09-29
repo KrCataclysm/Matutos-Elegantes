@@ -7,9 +7,9 @@ import site from '../data/site.json';
   <div class="pagina-topo pg-contato"><Bandeirinhas /><div class="wrap"><h1>Contato</h1><p>Fale com a gente — parcerias, projetos e apoio à cultura.</p></div></div>
   <div class="faixa"></div>
   <section><div class="wrap">
-    <div class="contatos">
-      <div class="card"><strong>E-mail</strong><a href={`mailto:${site.email}`}>{site.email}</a></div>
-      <div class="card"><strong>Instagram</strong><a href={site.instagram} rel="noopener">{site.instagramUsuario}</a></div>
+    <div class="contato-blocos">
+      <a class="c-bloco c-verde reveal" href={`mailto:${site.email}`}><span>E-mail</span><strong>{site.email}</strong><i aria-hidden="true">→</i></a>
+      <a class="c-bloco c-rosa reveal" href={site.instagram} rel="noopener"><span>Instagram</span><strong>{site.instagramUsuario}</strong><i aria-hidden="true">→</i></a>
     </div>
     {site.formspree && (
       <form action={site.formspree} method="POST">

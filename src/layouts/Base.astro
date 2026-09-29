@@ -36,6 +36,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
+  <div class="progresso" aria-hidden="true"><i id="prog"></i></div>
   <a class="pula" href="#conteudo">Pular para o conteúdo</a>
   <header class="topo">
     <div class="wrap">
@@ -58,6 +59,9 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} — Pont
     </div>
   </footer>
   <script is:inline>
+    const prog = document.getElementById('prog');
+    const upd = () => { const h = document.documentElement.scrollHeight - innerHeight; prog.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')'; };
+    addEventListener('scroll', upd, { passive: true }); upd();
     const btn = document.querySelector('.menu-btn'), nav = document.getElementById('nav');
     btn.addEventListener('click', () => btn.setAttribute('aria-expanded', nav.classList.toggle('aberto')));
     const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add('vis'), io.unobserve(e.target))), { threshold: .12 });
