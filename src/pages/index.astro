@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Bandeirinhas from '../components/Bandeirinhas.astro';
 import projetos from '../data/projetos.json';
 import site from '../data/site.json';
+import numeros from '../data/numeros.json';
 const b = import.meta.env.BASE_URL.replace(/\/$/, '');
 const atual = [...projetos].sort((a, c) => c.ano - a.ano)[0];
 const itens = [
@@ -38,7 +39,7 @@ const palavras = ['Cultura popular', 'Tradição', 'Arte', 'Identidade', 'Comuni
       <span class="rotulo reveal">O que fazemos</span>
       <h2 data-split style="max-width:16ch">Cultura que <span class="marca">move</span> a comunidade</h2>
       <p class="sub reveal">Uma associação cultural reconhecida como Ponto de Cultura, dedicada a valorizar a arte, a tradição e a identidade do nosso povo.</p>
-      <div class="lista">
+      <div class="lista" data-stagger>
         {itens.map(([n, t, d, h, c], i) => (
           <a class="reveal" href={`${b}${h}`} style={`--cor:${c};--d:${i * 90}ms`}><span class="n">{n}</span><h3>{t}</h3><span class="seta">→</span><p>{d}</p></a>
         ))}
@@ -54,6 +55,23 @@ const palavras = ['Cultura popular', 'Tradição', 'Arte', 'Identidade', 'Comuni
       <p class="scrub" data-scrub>Cultura popular. Tradição. Arte. Identidade. Comunidade. Festa. Memória.</p>
     </div>
   </section>
+
+  {numeros.itens.length > 0 && (
+    <section class="numeros" data-spot>
+      <div class="wrap">
+        <span class="rotulo reveal">Em números</span>
+        <div class="numeros-grade" data-stagger>
+          {numeros.itens.map((n) => (
+            <div class="numero reveal" data-reveal="zoom">
+              <strong>{n.prefixo}<span data-count={n.valor} data-from="0">{n.valor}</span>{n.sufixo}</strong>
+              <span>{n.rotulo}</span>
+            </div>
+          ))}
+        </div>
+        {numeros.exemplo && <p class="aviso-exemplo">Dados ilustrativos, a serem substituídos.</p>}
+      </div>
+    </section>
+  )}
 
   <section class="destaque">
     <div class="wrap">

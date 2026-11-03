@@ -1,0 +1,10 @@
+{
+  "_ajuda": "Troque os valores pelos números reais. Remova \"exemplo\": true quando estiver tudo verdadeiro (some o aviso na tela). Deixe a lista vazia [] para esconder a seção.",
+  "exemplo": true,
+  "itens": [
+    { "valor": 12, "prefixo": "", "sufixo": "", "rotulo": "Anos de história" },
+    { "valor": 40, "prefixo": "+", "sufixo": "", "rotulo": "Atividades realizadas" },
+    { "valor": 300, "prefixo": "+", "sufixo": "", "rotulo": "Pessoas alcançadas" },
+    { "valor": 4, "prefixo": "", "sufixo": "", "rotulo": "Editais executados" }
+  ]
+}

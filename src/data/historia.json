@@ -1,0 +1,10 @@
+{
+  "_ajuda": "Linha do tempo da página Sobre. Cada item: ano, titulo, texto. Remova \"exemplo\": true quando estiver tudo verdadeiro. Lista vazia [] esconde a seção.",
+  "exemplo": true,
+  "itens": [
+    { "ano": "20XX", "titulo": "Nasce a Matutos Elegantes", "texto": "Conte aqui como tudo começou." },
+    { "ano": "20XX", "titulo": "Reconhecimento como Ponto de Cultura", "texto": "Conte aqui o marco do reconhecimento." },
+    { "ano": "2025", "titulo": "PNAB 2025", "texto": "Conte aqui o que foi realizado." },
+    { "ano": "2026", "titulo": "PNAB 2026", "texto": "Conte aqui o que está em andamento." }
+  ]
+}

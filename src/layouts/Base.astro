@@ -89,6 +89,12 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} · Ponto
       splits.forEach(function (el) { el.setAttribute('aria-label', el.textContent.trim()); words(el, 'w', 'wi'); el.querySelectorAll('.w').forEach(function (w) { w.setAttribute('aria-hidden', 'true'); }); });
       var scrubs = document.querySelectorAll('[data-scrub]');
       scrubs.forEach(function (el) { el.setAttribute('aria-label', el.textContent.trim()); words(el, 'sw', null); el.querySelectorAll('.sw').forEach(function (w) { w.setAttribute('aria-hidden', 'true'); }); });
+      // escalonamento: filhos de [data-stagger] entram em sequência
+      document.querySelectorAll('[data-stagger]').forEach(function (g) {
+        Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty('--d', (i * 90) + 'ms'); });
+      });
+      // linha do tempo: no modo reduzido já aparece completa
+      var timelines = Array.prototype.slice.call(document.querySelectorAll('[data-timeline]'));
       // entrada por rolagem
       var io = new IntersectionObserver(function (es) {
         es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); if (e.target.hasAttribute('data-count')) count(e.target); } });
@@ -101,7 +107,7 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} · Ponto
         function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / 1600, 1), e = 1 - Math.pow(1 - p, 4); el.textContent = Math.round(from + (to - from) * e); if (p < 1) requestAnimationFrame(step); }
         requestAnimationFrame(step);
       }
-      if (reduce) { scrubs.forEach(function (el) { el.querySelectorAll('.sw').forEach(function (w) { w.style.opacity = 1; }); }); return; }
+      if (reduce) { timelines.forEach(function (t) { t.style.setProperty('--p', 1); }); scrubs.forEach(function (el) { el.querySelectorAll('.sw').forEach(function (w) { w.style.opacity = 1; }); }); return; }
       // scrub de palavras + parallax + progresso
       var pars = document.querySelectorAll('[data-parallax]');
       function frame() {
@@ -115,6 +121,10 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} · Ponto
           p = Math.max(0, Math.min(1, p));
           var ws = el.querySelectorAll('.sw'), n = ws.length;
           ws.forEach(function (w, i) { var q = Math.max(0, Math.min(1, p * (n + 4) / n * 1 - i / n)); w.style.opacity = (0.16 + 0.84 * q).toFixed(3); });
+        });
+        timelines.forEach(function (t) {
+          var r = t.getBoundingClientRect(), p = (innerHeight * 0.6 - r.top) / r.height;
+          t.style.setProperty('--p', Math.max(0, Math.min(1, p)).toFixed(3));
         });
         pars.forEach(function (el) {
           var r = el.getBoundingClientRect(), c = r.top + r.height / 2 - innerHeight / 2, s = +el.getAttribute('data-parallax') || 0.1;
@@ -148,6 +158,25 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} · Ponto
           el.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * 0.25).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * 0.35).toFixed(1) + 'px)';
         });
         el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+      });
+      // cartões: inclinação 3D + brilho que segue o cursor
+      document.querySelectorAll('[data-card]').forEach(function (el) {
+        el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') el.classList.add('inclina'); });
+        el.addEventListener('pointermove', function (e) {
+          if (e.pointerType !== 'mouse') return;
+          var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+          el.style.setProperty('--mx', (x * 100).toFixed(1) + '%'); el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+          el.style.transform = 'perspective(1000px) rotateY(' + ((x - 0.5) * 5).toFixed(2) + 'deg) rotateX(' + ((0.5 - y) * 4).toFixed(2) + 'deg) translateY(-4px)';
+        });
+        el.addEventListener('pointerleave', function () { el.classList.remove('inclina'); el.style.transform = ''; });
+      });
+      // seções com holofote que segue o cursor
+      document.querySelectorAll('[data-spot]').forEach(function (el) {
+        el.addEventListener('pointermove', function (e) {
+          if (e.pointerType !== 'mouse') return;
+          var r = el.getBoundingClientRect();
+          el.style.setProperty('--sx', (e.clientX - r.left).toFixed(0) + 'px'); el.style.setProperty('--sy', (e.clientY - r.top).toFixed(0) + 'px');
+        });
       });
       // inclinação do logo com o cursor
       var tilt = document.querySelector('[data-tilt]');
