@@ -282,3 +282,37 @@ nav.aberto{max-height:calc(100dvh - 70px - env(safe-area-inset-top));overflow-y:
   .js .galeria>*{clip-path:none}.tempo-item.vis::before{animation:none}.tempo-trilho i{transform:none}
   [data-card]::before{display:none}
 }
+
+/* ===== RESPONSIVIDADE (ajustes) ===== */
+/* seções com entrada lateral nunca geram rolagem horizontal */
+.historia,.numeros,.destaque,.insta{overflow-x:clip}
+@media (max-width:860px){
+  .js [data-reveal=esq],.js [data-reveal=dir]{transform:translateY(22px)}
+  .js [data-reveal].vis{transform:none}
+}
+/* telas de toque: sem hover "grudado"; feedback no toque */
+@media (hover:none){
+  .lista a:hover{color:inherit;padding-inline:.5rem}
+  .lista a:hover::before{transform:scaleY(0)}
+  .lista a:hover .n{color:var(--cor)}
+  .lista a:hover h3{color:var(--mata-esc)}
+  .lista a:hover p{color:var(--suave)}
+  .lista a:hover .seta,.c-bloco:hover i{transform:none}
+  .proj-cor:hover,.c-bloco:hover,.proj-cor:hover .proj-ano{transform:none}
+  .galeria div:hover img,.galeria img:hover{transform:none;filter:none}
+  .lista a:active{color:#fff}.lista a:active::before{transform:scaleY(1)}
+  .lista a:active .n,.lista a:active h3,.lista a:active p{color:#fff}
+  .btn:active{transform:scale(.97)}
+  .c-bloco:active{transform:scale(.985)}
+}
+/* tablets e celulares deitados */
+@media (min-width:600px) and (max-width:860px){
+  .numeros-grade{grid-template-columns:repeat(2,1fr)}
+  .contato-blocos{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-height:480px) and (orientation:landscape){
+  .hero-grid{padding-top:1rem}.hero h1{font-size:clamp(2rem,6vw,3rem)}.hero-logo img{width:min(240px,40vw)}
+  section{padding-block:2.5rem}.rola{display:none}
+}
+/* telas grandes: texto de tempo não fica longo demais */
+@media (min-width:1900px){.wrap{max-width:calc(1400px + 4rem)}}
