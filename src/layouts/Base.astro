@@ -15,6 +15,8 @@ const tituloFull = titulo ? `${titulo} · ${site.nome}` : `${site.nome} · Ponto
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>{tituloFull}</title>
   <meta name="description" content={descricao} />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="theme-color" content="#072f15" />
   <meta property="og:title" content={tituloFull} />
   <meta property="og:description" content={descricao} />
