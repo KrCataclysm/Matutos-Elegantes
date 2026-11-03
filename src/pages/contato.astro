@@ -11,8 +11,8 @@ const b = import.meta.env.BASE_URL.replace(/\/$/, '');
   </div>
   <section><div class="wrap">
     <div class="contato-blocos">
-      <a class="c-bloco c-verde reveal" data-magnetic href={`mailto:${site.email}`}><span>E-mail</span><strong>{site.email}</strong><i aria-hidden="true">→</i></a>
-      <a class="c-bloco c-terra reveal" data-magnetic href={site.instagram} rel="noopener"><span>Instagram</span><strong>{site.instagramUsuario}</strong><i aria-hidden="true">→</i></a>
+      <a class="c-bloco c-verde reveal" data-card data-magnetic href={`mailto:${site.email}`}><span>E-mail</span><strong>{site.email}</strong><i aria-hidden="true">→</i></a>
+      <a class="c-bloco c-terra reveal" data-card data-magnetic href={site.instagram} rel="noopener"><span>Instagram</span><strong>{site.instagramUsuario}</strong><i aria-hidden="true">→</i></a>
     </div>
     {site.formspree && (
       <form action={site.formspree} method="POST">
